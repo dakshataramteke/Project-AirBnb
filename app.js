@@ -42,18 +42,15 @@ app.get("/listings/new",(req,res)=>{
 app.get("/listings/:id",async(req,res)=>{
     let {id}=req.params;
     const listing=await Listing.findById(id);
-    console.log(listing)
+    console.log(id);
+    console.log(listing);
     res.render("listings/show.ejs",{listing})
 });
  //CreateRoute
 app.post("/listings",async(req,res)=>{
-
-// let listing = req.body;
 const newListing= new Listing(req.body.listing);
 await newListing.save();
 res.redirect("listings");
-// console.log(listing);
-
 });
 
 // Edit Route
